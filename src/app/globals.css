@@ -1,0 +1,258 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 231 67% 15%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 171 76% 67%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --accent: 206 100% 65%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 231 67% 15%;
+    --foreground: 210 40% 98%;
+
+    --card: 231 67% 15%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 231 67% 15%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 231 67% 15%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 171 76% 67%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --accent: 206 100% 65%;
+    --accent-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    font-family: "Montserrat", sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .font-montserrat {
+    font-family: "Montserrat", sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #64f1b8, #44a7ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, #151444, #1a1b4b);
+  }
+
+  .bg-gradient-secondary {
+    background: linear-gradient(135deg, #64f1b8, #44a7ff);
+  }
+
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .parallax-element {
+    will-change: transform;
+  }
+
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+  }
+
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .counter {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .typing-effect::after {
+    content: "|";
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    51%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .pulse-cta {
+    animation: pulse-cta 2s infinite;
+  }
+
+  @keyframes pulse-cta {
+    0% {
+      box-shadow: 0 0 0 0 rgba(100, 241, 184, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(100, 241, 184, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(100, 241, 184, 0);
+    }
+  }
+
+  .floating {
+    animation: floating 3s ease-in-out infinite;
+  }
+
+  @keyframes floating {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .rotate-slow {
+    animation: rotate-slow 20s linear infinite;
+  }
+
+  @keyframes rotate-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+/* Spacing and Z-index hierarchy for sections */
+section {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* Header has highest priority */
+header {
+  position: fixed;
+  z-index: 50;
+}
+
+/* Interactive elements */
+.chatbot-container,
+.fixed.bottom-4.right-4 {
+  z-index: 40;
+}
+
+.popup-container,
+.fixed.inset-0 {
+  z-index: 60;
+}
+
+/* Container safety */
+.container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Responsive text adjustments */
+@media (max-width: 768px) {
+  .text-4xl {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+
+  .text-5xl {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+
+  .text-6xl {
+    font-size: 3rem;
+    line-height: 3.5rem;
+  }
+
+  section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+/* Glass effect improvements */
+.glass-effect {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
